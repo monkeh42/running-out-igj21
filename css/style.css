@@ -1,0 +1,31 @@
+body {
+    background-color: darkslategrey;
+    color: gainsboro;
+    font-family: 'Teko', sans-serif;
+}
+
+#header-title {
+    text-align: center;
+}
+
+#resource-table {
+    margin: auto;
+}
+
+.resource-line {
+    font-size: 16pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+.prodNum {
+    font-weight: bold;
+    color: lightsteelblue;
+    font-size: 125%;
+}
+
+.moneyNum {
+    font-weight: bold;
+    color: goldenrod;
+    font-size: 125%;
+}

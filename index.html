@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+    
+<head>
+    <title>You're Broke</title>
+    <script type="text/javascript" src="js/tools/break_infinity.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="js/money.js"></script>
+    <script type="text/javascript" src="js/prod.js"></script>
+    <!--<script type="text/javascript" src="js/tools/data_objects.js"></script>-->
+    <script type="text/javascript" src="js/tools/utils.js"></script>
+    <script type="text/javascript" src="js/tools/components.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body onload="init()">
+    <div id="app">
+        <div id="header-title"><h1>You're Broke.</h1></div>
+        <hr>
+        <table id="resource-table">
+            <tr>
+                <td>
+                    <div class="resource-line">You have <num-text data="p" :val="format(player.res)" label="resources"></num-text>.</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="resource-line">You have <num-text data="m" :val="format(player.money)" label="dollars"></num-text>.</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
