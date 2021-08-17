@@ -30,3 +30,15 @@ function calculateStartMoneyMult() {
     let m = player.mach.div(player.lastMachAtReset).log10();
     return Math.max(m, 1);
 }
+
+function goBankrupt() {
+    if (!isBankrupt()) { return; }
+    let start = calculateStartMoney();
+    let brp = calculateBRGain();
+    player.brPoints = player.brPoints.plus(brp);
+    player.totalBRPoints = player.totalBRPoints.plus(brp);
+    player.mach = START_PLAYER.mach;
+    player.startMoney = start;
+    player.money = start;
+    player.prodUpgs = new Array();
+}

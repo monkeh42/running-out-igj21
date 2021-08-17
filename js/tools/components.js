@@ -145,7 +145,7 @@ function loadVue() {
 		props: ['data'],
 		template: `
 		<div class="prestigeContainer">
-			<div v-if="isBankrupt()" class="prestige-div">
+			<div v-if="isBankrupt()" class="prestige-div" v-on:click="goBankrupt()">
 				<div class="prestige-button">
 					<div style="font-weight: bold; font-size: 20pt; margin: 5px 0px;">BANKRUPT</div>
 					<div style="margin: 5px 0px;">Reset all your progress to gain bankrupt points. You will start again with more money.</div>

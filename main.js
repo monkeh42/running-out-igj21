@@ -195,3 +195,9 @@ function fixData(data, start) {
         }
     }
 }
+
+//nav stuff
+
+function navIconClick(tab) {
+    player.activeTab = tab;
+}

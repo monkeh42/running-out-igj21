@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body onload="init()">
@@ -24,40 +25,67 @@
         <hr>
         <table id="resource-table">
             <tr>
-                <td>
-                    <div class="resource-line">You have <num-text data="p" :val="format(player.mach, 1)" label="machinery"></num-text>.</div>
+                <td width="250px">
+                    <div class="resource-line">You have <num-text data="m" :val="formatWhole(player.money)" label="$"></num-text>.</div>
                 </td>
                 <td width="50px">
                     <div style="width: 100%;"></div>
                 </td>
-                <td>
-                    <div class="resource-line">You have <num-text data="m" :val="formatWhole(player.money)" label="$"></num-text>.</div>
+                <td width="250px">
+                    <div class="resource-line">You have <num-text data="p" :val="format(player.mach, 1)" label="machinery"></num-text>.</div>
                 </td>
             </tr>
             <tr>
+                <td></td>
+                <td></td>
                 <td>
                     <div v-if="calculateProduction().gt(0)" class="prod-line">You are producing <num-text data="p" :val="format(calculateProduction(), 1)" label="machinery"></num-text>/sec.</div>
                 </td>
             </tr>
         </table>
         <hr>
-        <table id="prod-upg-table">
-            <tr>
-                <td>
-                    <upgrade data="p" id="1"></upgrade>
-                </td>
-                <td>
-                    <upgrade data="p" id="2"></upgrade>
-                </td>
-                <td>
-                    <upgrade data="p" id="3"></upgrade>
-                </td>
-                <td>
-                    <upgrade data="p" id="4"></upgrade>
-                </td>
-            </tr>
-        </table>
-        <prestige-button></prestige-button>
+        <div id="nav-icons-container">
+            <div v-if="player.totalBRPoints.gt(0)" id="nav-icons">
+                <div class="nav-icon" id="prod-nav-icon" onclick="navIconClick('prod')"><span v-bind:class="{ 'material-icons md-48 md-dark': true, 'selected': player.activeTab=='prod' }">build_circle</span></div>
+                <div class="nav-icon" id="br-nav-icon" onclick="navIconClick('br')"><span v-bind:class="{ 'material-icons md-48 md-dark': true, 'selected': player.activeTab=='br' }">monetization_on</span></div>
+            </div>
+        </div>
+        <div v-if="player.activeTab=='prod'" class="tab-div" id="prod-tab">
+            <table id="prod-upg-table">
+                <tr>
+                    <td>
+                        <upgrade data="p" id="1"></upgrade>
+                    </td>
+                    <td>
+                        <upgrade data="p" id="2"></upgrade>
+                    </td>
+                    <td>
+                        <upgrade data="p" id="3"></upgrade>
+                    </td>
+                    <td>
+                        <upgrade data="p" id="4"></upgrade>
+                    </td>
+                </tr>
+            </table>
+            <prestige-button></prestige-button>
+        </div>
+        <div v-if="player.activeTab=='br'" class="tab-div" id="br-tab">
+            <table id="br-resource-table">
+                <tr>
+                    <td>
+                        <div class="resource-line">You have <num-text data="b" :val="formatWhole(player.brPoints)" label="bankrupt points"></num-text>.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="resource-line">You have gained <num-text data="b" :val="formatWhole(player.totalBRPoints)" label="total bankrupt points"></num-text>.</div>
+                    </td>
+                </tr>
+            </table>
+            <table id="br-upg-table">
+
+            </table>
+        </div>
     </div>
 </body>
 
