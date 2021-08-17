@@ -201,3 +201,7 @@ function fixData(data, start) {
 function navIconClick(tab) {
     player.activeTab = tab;
 }
+
+function closeIntroPopup() {
+    player.seenIntro = true;
+}

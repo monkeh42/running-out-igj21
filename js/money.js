@@ -44,7 +44,7 @@ function goBankrupt() {
 }
 
 function calculateProfit() {
-
+    return new Decimal(1);
 }
 
 function calculateSpending() {

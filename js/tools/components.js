@@ -148,7 +148,7 @@ function loadVue() {
 			<div v-if="isBankrupt()" class="prestige-div" v-on:click="goBankrupt()">
 				<div class="prestige-button">
 					<div style="font-weight: bold; font-size: 20pt; margin: 5px 0px;">BANKRUPT</div>
-					<div style="margin: 5px 0px;">Reset all your progress to gain bankrupt points. You will start again with more money.</div>
+					<div style="margin: 5px 0px;">Reset all your progress to gain bankrupt points. You will start again with more credits.</div>
 					<div>You will gain <num-text data="b" :val="formatWhole(calculateBRGain())" label="bankrupt points">.</num-text></div>
 					<div>You will start with <num-text data="m" :val="formatWhole(calculateStartMoney())" label="$">.</num-text> ({{ format(calculateStartMoneyMult()) }}x)</div>
 				</div>

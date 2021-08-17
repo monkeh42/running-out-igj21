@@ -21,6 +21,14 @@
 
 <body onload="init()">
     <div id="app">
+        <div v-if="!player.seenIntro" id="intro-popup">
+            <h2>Welcome to You're Broke.</h2>
+            In this game your goal is to spend all of your credits while producing augments.<br>
+            (augments? what is this, cyberpunk 2e77? am I playing as a megacorp? these are all questions better left un-asked.)<br>
+            When you run out of credits, you can go bankrupt and start over, beginning with a larger pool of credits. After your first reset several new features will unlock - click on the question mark in the corner for more info on these.<br>
+            Have fun and try not to think about our inevitable collapse into a late-stage capitalist hellscape.
+            <div class="confirm-button" onclick="closeIntroPopup()">Oookay...</div>
+        </div>
         <div id="header-title"><h1 v-html="(player.money.gt(0) ? 'You\'re Not Broke.' : 'You\'re Broke.')"></h1></div>
         <hr>
         <table id="resource-table">
@@ -44,10 +52,10 @@
             </tr>
         </table>
         <hr>
-        <div id="nav-icons-container">
-            <div v-if="player.totalBRPoints.gt(0)" id="nav-icons">
-                <div class="nav-icon" id="prod-nav-icon" onclick="navIconClick('prod')"><span v-bind:class="{ 'material-icons md-48 md-dark': true, 'selected': player.activeTab=='prod' }">build_circle</span></div>
-                <div class="nav-icon" id="br-nav-icon" onclick="navIconClick('br')"><span v-bind:class="{ 'material-icons md-48 md-dark': true, 'selected': player.activeTab=='br' }">monetization_on</span></div>
+        <div v-if="player.totalBRPoints.gt(0)" id="nav-icons-container">
+            <div id="nav-icons">
+                <div class="nav-icon" id="prod-nav-icon" onclick="navIconClick('prod')"><span v-bind:class="{ 'material-icons md-48 md-dark': true, 'selected': player.activeTab=='prod' }">memory</span></div>
+                <div class="nav-icon" id="br-nav-icon" onclick="navIconClick('br')"><span v-bind:class="{ 'material-icons md-48 md-dark': true, 'selected': player.activeTab=='br' }">euro</span></div>
             </div>
         </div>
         <div v-if="player.activeTab=='prod'" class="tab-div" id="prod-tab">
@@ -79,6 +87,11 @@
                 <tr>
                     <td>
                         <div class="resource-line">You have gained <num-text data="b" :val="formatWhole(player.totalBRPoints)" label="total bankrupt points"></num-text>.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="resource-line">You have spent <num-text data="b" :val="formatWhole(player.spentBRPoints)" label=" bankrupt points"></num-text>, which earn <num-text data="m" :val="format(calculateProfit(), 1)" label="$"></num-text>/sec.</div>
                     </td>
                 </tr>
             </table>

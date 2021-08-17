@@ -5,6 +5,7 @@ const START_PLAYER = {
     lastAugsAtReset: new Decimal(1),
     brPoints: new Decimal(0),
     totalBRPoints: new Decimal(0),
+    spentBRPoints: new Decimal(0),
 
     lastUpdate: new Date().getTime(),
     devSpeed: 1,
@@ -12,4 +13,5 @@ const START_PLAYER = {
     prodUpgs: [],
 
     activeTab: 'prod',
+    seenIntro: false,
 }

@@ -39,6 +39,7 @@ body {
 .brNum {
     font-weight: bold;
     color: black;
+    -webkit-text-stroke: 0.5px gainsboro;
     font-size: 125%;
 }
 
@@ -156,5 +157,35 @@ body {
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
-.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark { color: rgba(0, 0, 0, 1); }
 .material-icons.md-dark.selected { color: rgba(255, 255, 255, 1); }
+
+#intro-popup {
+    background-color: #201234;
+    text-align: center;
+    font-size: 18px;
+    padding-left: 75px;
+    padding-right: 75px;
+    width: 650px;
+    height: 300px;
+    border: 2px solid gainsboro;
+    box-shadow: 10px 10px 10px black;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.confirm-button {
+    font-size: 22px;
+    border: 1px solid gainsboro;
+    height: 40px;
+    width: 75px;
+    margin: 15px auto;
+    text-align: center;
+    outline: none !important;
+    box-shadow: 5px 5px 5px black;
+    cursor: pointer;
+    line-height: 40px;
+}
