@@ -1,5 +1,5 @@
 body {
-    background-color: darkslategrey;
+    background-color: #201234;
     color: gainsboro;
     font-family: 'Teko', sans-serif;
 }
@@ -26,13 +26,13 @@ body {
 
 .prodNum {
     font-weight: bold;
-    color: lightsteelblue;
+    color: #de00ee;
     font-size: 125%;
 }
 
 .moneyNum {
     font-weight: bold;
-    color: goldenrod;
+    color: #ff823a;
     font-size: 125%;
 }
 

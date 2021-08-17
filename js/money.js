@@ -42,3 +42,11 @@ function goBankrupt() {
     player.money = start;
     player.prodUpgs = new Array();
 }
+
+function calculateProfit() {
+
+}
+
+function calculateSpending() {
+
+}

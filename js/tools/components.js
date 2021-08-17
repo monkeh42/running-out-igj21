@@ -62,7 +62,7 @@ function loadVue() {
 			},
 		},
 		template: `
-		<span><span :class="DATA[data].layerDisplay.numClass" v-html="(label=='$' ? '$' : '') + val"></span>{{ (label=='$' ? '' : ' '+plural(val, label)) }}</span>
+		<span><span :class="DATA[data].layerDisplay.numClass" v-html="(label=='$' ? '\u20AC' : '') + val"></span>{{ (label=='$' ? '' : ' '+plural(val, label)) }}</span>
 		`
 	})
 
