@@ -62,7 +62,7 @@ function loadVue() {
 			},
 		},
 		template: `
-		<span><span :class="DATA[data].layerDisplay.numClass" v-html="val"></span> {{ plural(val, label) }}</span>
+		<span><span :class="DATA[data].layerDisplay.numClass" v-html="(label=='$' ? '$' : '') + val"></span>{{ (label=='$' ? '' : ' '+plural(val, label)) }}</span>
 		`
 	})
 
@@ -125,36 +125,16 @@ function loadVue() {
 		props: {
 			data: String, 
 			id: String,
-			cssid: {
-				type: String,
-				default: '',
-			},
-			extra: {
-				type: String,
-				default: '',
-			},
-		},
-		methods: {
-			strikeout(d) {
-				return (d.slice(0,1)=='g' && (isResearchActive(6)||isResearchActive(7)))
-			}
 		},
 		template: `
-		<div v-if="data!='a'||!player.win">
-			<button v-if="DATA[data].upgrades[id]!== undefined" v-on:click="DATA[data].buyUpg(data, id)" v-bind:id="cssid" v-bind:class="{ [DATA[data].upgrades.className]: true, bought: DATA[data].upgrades[id].isBought(), cant: (!(DATA[data].upgrades[id].canAfford())&&!DATA[data].upgrades[id].isBought()), can: (DATA[data].upgrades[id].canAfford()&&!DATA[data].upgrades[id].isBought()&&!DATA[data].upgrades[id].locked()), locked: DATA[data].upgrades[id].locked(), tooltip: (player.tooltipsEnabled&&DATA[data].upgrades[id].displayTooltip)}" v-bind:extra-attr="extra" v-bind:data-title="DATA[data].upgrades[id].displayFormula()">
-				<div v-if="data!='a'||(!DATA[data].upgrades[id].isBought()&&!DATA[data].upgrades[id].locked())">
-					<span v-if="data=='a'">Build component:<br></span>
-					<span v-html="DATA[data].upgrades[id].title" style="font-weight: 900;"></span><br>
-					<span v-html="DATA[data].upgrades[id].desc()+'<br>'"></span>
-					<span v-if="DATA[data].upgrades[id].requires!==undefined"><span v-if="DATA[data].upgrades[id].requires.length>0"v-bind:style="[strikeout(data) ? { 'text-decoration': 'line-through' } : { 'text-decoration': '' }]">Requires: <span style="font-weight: 900;" v-html="DATA[data].upgrades[DATA[data].upgrades[id].requires[0]].title"></span><span v-if="DATA[data].upgrades[id].requires.length>1"> or <span style="font-weight: 900;" v-html="DATA[data].upgrades[DATA[data].upgrades[id].requires[1]].title"></span></span><br></span></span> 
-					Cost: <span v-if="data=='a'" v-html="DATA[data].upgrades[id].cost()"></span><span v-else><num-text-plain :val="formatDefault(DATA[data].upgrades[id].cost())" :label="DATA[data].upgrades[id].resource"></num-text-plain></span>
-					<span v-if="data=='c'"><br>Level: {{ formatWhole(player.construction[id]) + (DATA[data].upgrades[id].extraLevels()>0 ? ' + ' + formatWhole(DATA[data].upgrades[id].extraLevels()) : '') }}</span>
-					<span v-if="DATA[data].upgrades[id].displayEffect"><br>Currently: <span v-html="DATA[data].upgrades[id].effectString()"></span></span>
-				</div>
-				<div v-if="data=='a'&&DATA[data].upgrades[id].isBought()">
-					<span v-html="DATA[data].upgrades[id].title.toUpperCase()+' ONLINE.'" style="font-weight: 900;"></span>
-				</div>
-			</button>
+		<div>
+			<div v-if="DATA[data].upgrades[id]!== undefined" v-on:click="DATA[data].buyUpg(data, id)" v-bind:class="{ [DATA[data].upgrades.className]: true, bought: DATA[data].upgrades.isBought(id), cant: ((!DATA[data].upgrades.canAfford(id))&&(!DATA[data].upgrades.isBought(id))), can: (DATA[data].upgrades.canAfford(id)&&(!DATA[data].upgrades.isBought(id)))}">
+				<span v-html="DATA[data].upgrades[id].title" style="font-weight: bold;"></span><br>
+				<span v-html="DATA[data].upgrades[id].desc()+'<br>'"></span>
+				<span v-if="DATA[data].upgrades[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].upgrades[id].requires)" label="resources"></num-text></span><br>
+				Cost: <num-text :val="formatDefault(DATA[data].upgrades[id].cost())" label="$"></num-text-plain>
+				<span v-if="DATA[data].upgrades[id].displayEffect"><br>Currently: <span v-html="DATA[data].upgrades[id].effectString()"></span></span>
+			</div>
 		</div>
 		`
 	})

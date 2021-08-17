@@ -30,7 +30,15 @@
             </tr>
             <tr>
                 <td>
-                    <div class="resource-line">You have <num-text data="m" :val="formatWhole(player.money)" label="dollars"></num-text>.</div>
+                    <div class="resource-line">You have <num-text data="m" :val="formatWhole(player.money)" label="$"></num-text>.</div>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <table id="prod-upg-table">
+            <tr>
+                <td>
+                    <upgrade data="p" id="1"></upgrade>
                 </td>
             </tr>
         </table>
