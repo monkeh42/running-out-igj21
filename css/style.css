@@ -90,7 +90,7 @@ body {
 }
 
 .upgrade-div.bought {
-    border: 1px solid goldenrod;
+    border: 1px solid #ff823a;
     background-color: black;
 }
 
@@ -121,13 +121,13 @@ body {
     margin: 1em;
     padding: 10px;
     border: 1px solid gainsboro;
-    background-color: steelblue;
+    background-color: #391f5e;
     box-shadow: 5px 5px 5px black;
     cursor: pointer;
 }
 
 .prestige-div:hover, .prestige-div:active {
-    background-color: rgb(18, 118, 199);
+    background-color: #4e2b80;
 }
 
 .prestige-div:active {
