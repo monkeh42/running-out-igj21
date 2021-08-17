@@ -40,7 +40,7 @@ function init() {
 function loadGame() {
     setupData();
     player = {};
-    player.res = new Decimal(1e10);
+    player.res = new Decimal(10);
     player.money = new Decimal(20);
     /*var savePlayer = localStorage.getItem('nekrosave');
     if (savePlayer === null || savePlayer === undefined) {

@@ -20,17 +20,17 @@
 
 <body onload="init()">
     <div id="app">
-        <div id="header-title"><h1>You're Broke.</h1></div>
+        <div id="header-title"><h1 v-html="(player.money.gt(0) ? 'You\'re Not Broke.' : 'You\'re Broke.')"></h1></div>
         <hr>
         <table id="resource-table">
             <tr>
                 <td>
-                    <div class="resource-line">You have <num-text data="p" :val="format(player.res)" label="resources"></num-text>.</div>
+                    <div class="resource-line">You have <num-text data="p" :val="formatWhole(player.res)" label="resources"></num-text>.</div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <div class="resource-line">You have <num-text data="m" :val="format(player.money)" label="dollars"></num-text>.</div>
+                    <div class="resource-line">You have <num-text data="m" :val="formatWhole(player.money)" label="dollars"></num-text>.</div>
                 </td>
             </tr>
         </table>
