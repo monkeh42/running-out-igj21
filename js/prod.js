@@ -5,7 +5,7 @@ var PROD_DATA = {
     upgrades: {
         className: 'prod-upg',
         isBought: (id) => player.prodUpgs.includes(id),
-        canAfford: (id) => player.money.gte(DATA.p.upgrades[id].cost())&&player.mach.gte(DATA.p.upgrades[id].requires),
+        canAfford: (id) => player.money.gte(DATA.p.upgrades[id].cost())&&player.augs.gte(DATA.p.upgrades[id].requires),
         buyUpg: function(id) {
             if (DATA.p.upgrades.isBought(id) || !DATA.p.upgrades.canAfford(id)) { return; }
             player.money = player.money.minus(DATA.p.upgrades[id].cost());
@@ -31,7 +31,7 @@ var PROD_DATA = {
             effectString: () => (format(DATA.p.upgrades[2].effect(), 2) + 'x'),
             effect: function() {
                 let e = new Decimal(1);
-                if (player.mach.gte(1)) { e = e.plus(player.mach.log10()); }
+                if (player.augs.gte(1)) { e = e.plus(player.augs.log10()); }
                 return e;
             }
         },

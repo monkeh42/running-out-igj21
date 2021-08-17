@@ -55,7 +55,7 @@ function loadVue() {
 		props: ['data', 'val', 'label'],
 		methods: {
 			plural(d, str) {
-				if (d=='infinity' || str=='machinery') { return str }
+				if (d=='infinity' || str=='augments') { return str }
 				d = new Decimal(d.replace(',', ''));
 				if (str.slice(-3)=='ies') { return (d.eq(1) ? (str.slice(0, -3)+'y') : str); }
 				else { return (d.eq(1) ? str.slice(0, -1) : str); }
@@ -132,7 +132,7 @@ function loadVue() {
 				<div class="upg-button">
 					<span v-html="DATA[data].upgrades[id].title" style="font-weight: bold;"></span><br>
 					<span v-html="DATA[data].upgrades[id].desc()+'<br>'"></span>
-					<span v-if="DATA[data].upgrades[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].upgrades[id].requires)" label="machinery"></num-text><br></span>
+					<span v-if="DATA[data].upgrades[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].upgrades[id].requires)" label="augments"></num-text><br></span>
 					<div class="upg-cost-container">Cost: <num-text data="m" :val="formatWhole(DATA[data].upgrades[id].cost())" label="$"></num-text-plain></div>
 					<div v-if="DATA[data].upgrades[id].displayEffect" class="upg-effect-container"><br>Currently: <span v-html="DATA[data].upgrades[id].effectString()"></span>
 				</div>

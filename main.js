@@ -109,7 +109,7 @@ function gameLoop(diff=new Decimal(0)) {
     diff = new Decimal(currentUpdate - player.lastUpdate); 
     if (player.devSpeed>1) { diff = diff.times(player.devSpeed); }
 
-    player.mach = player.mach.plus(calculateProduction().times(diff.div(1000)));
+    player.augs = player.augs.plus(calculateProduction().times(diff.div(1000)));
 
     //updateUnlocks();
     

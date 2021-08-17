@@ -32,14 +32,14 @@
                     <div style="width: 100%;"></div>
                 </td>
                 <td width="250px">
-                    <div class="resource-line">You have <num-text data="p" :val="format(player.mach, 1)" label="machinery"></num-text>.</div>
+                    <div class="resource-line">You have <num-text data="p" :val="format(player.augs, 1)" label="augments"></num-text>.</div>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
                 <td>
-                    <div v-if="calculateProduction().gt(0)" class="prod-line">You are producing <num-text data="p" :val="format(calculateProduction(), 1)" label="machinery"></num-text>/sec.</div>
+                    <div v-if="calculateProduction().gt(0)" class="prod-line">You are producing <num-text data="p" :val="format(calculateProduction(), 1)" label="augments"></num-text>/sec.</div>
                 </td>
             </tr>
         </table>
