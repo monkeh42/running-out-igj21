@@ -8,7 +8,7 @@
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="js/money.js"></script>
     <script type="text/javascript" src="js/prod.js"></script>
-    <!--<script type="text/javascript" src="js/tools/data_objects.js"></script>-->
+    <script type="text/javascript" src="js/data_objects.js"></script>
     <script type="text/javascript" src="js/tools/utils.js"></script>
     <script type="text/javascript" src="js/tools/components.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -25,12 +25,18 @@
         <table id="resource-table">
             <tr>
                 <td>
-                    <div class="resource-line">You have <num-text data="p" :val="formatWhole(player.res)" label="resources"></num-text>.</div>
+                    <div class="resource-line">You have <num-text data="p" :val="format(player.mach, 1)" label="machinery"></num-text>.</div>
+                </td>
+                <td width="50px">
+                    <div style="width: 100%;"></div>
+                </td>
+                <td>
+                    <div class="resource-line">You have <num-text data="m" :val="formatWhole(player.money)" label="$"></num-text>.</div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <div class="resource-line">You have <num-text data="m" :val="formatWhole(player.money)" label="$"></num-text>.</div>
+                    <div v-if="calculateProduction().gt(0)" class="prod-line">You are producing <num-text data="p" :val="format(calculateProduction(), 1)" label="machinery"></num-text>/sec.</div>
                 </td>
             </tr>
         </table>
@@ -40,8 +46,18 @@
                 <td>
                     <upgrade data="p" id="1"></upgrade>
                 </td>
+                <td>
+                    <upgrade data="p" id="2"></upgrade>
+                </td>
+                <td>
+                    <upgrade data="p" id="3"></upgrade>
+                </td>
+                <td>
+                    <upgrade data="p" id="4"></upgrade>
+                </td>
             </tr>
         </table>
+        <prestige-button></prestige-button>
     </div>
 </body>
 

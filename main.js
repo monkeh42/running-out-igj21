@@ -40,16 +40,14 @@ function init() {
 function loadGame() {
     setupData();
     player = {};
-    player.res = new Decimal(10);
-    player.money = new Decimal(20);
     /*var savePlayer = localStorage.getItem('nekrosave');
-    if (savePlayer === null || savePlayer === undefined) {
-        copyData(player, START_PLAYER);
-    } else {
+    if (savePlayer === null || savePlayer === undefined) { */
+    copyData(player, START_PLAYER);
+    /*} else {
         copyData(player, JSON.parse(window.atob(savePlayer)));
         if (Object.keys(player).length == 0) { copyData(player, START_PLAYER); }
-    }
-    fixData(player, START_PLAYER); */
+    }*/
+    fixData(player, START_PLAYER);
     //if (player.version != GAME_DATA.version) { updateVersion(); }
 
     loadVue();
@@ -64,6 +62,7 @@ function addData(id, name, data) {
 function setupData() {
     addData('p', 'production', PROD_DATA);
     addData('m', 'money', MONEY_DATA);
+    addData('b', 'bankrupt', BANKRUPT_DATA);
     /*addData('hk', 'hotkeys', HOTKEYS);
     addData('sk', 'stat keys', STAT_KEYS);
     addData('header', 'header displays', HEADER_DATA);
@@ -95,7 +94,7 @@ function startGame() {
 
     player.lastUpdate = new Date();
     //player.lastAutoSave = new Date();
-    player.lastWindowUpdate = new Date();
+    //player.lastWindowUpdate = new Date();
     //save();
 
     startInterval();
@@ -108,7 +107,9 @@ function startInterval() {
 function gameLoop(diff=new Decimal(0)) {
     var currentUpdate = new Date().getTime();
     diff = new Decimal(currentUpdate - player.lastUpdate); 
-    if (app.devSpeed>0) { diff = diff.times(app.devSpeed); }
+    if (player.devSpeed>1) { diff = diff.times(player.devSpeed); }
+
+    player.mach = player.mach.plus(calculateProduction().times(diff.div(1000)));
 
     //updateUnlocks();
     

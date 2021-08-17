@@ -55,7 +55,7 @@ function loadVue() {
 		props: ['data', 'val', 'label'],
 		methods: {
 			plural(d, str) {
-				if (d=='infinity') { return str }
+				if (d=='infinity' || str=='machinery') { return str }
 				d = new Decimal(d.replace(',', ''));
 				if (str.slice(-3)=='ies') { return (d.eq(1) ? (str.slice(0, -3)+'y') : str); }
 				else { return (d.eq(1) ? str.slice(0, -1) : str); }
@@ -127,13 +127,15 @@ function loadVue() {
 			id: String,
 		},
 		template: `
-		<div>
-			<div v-if="DATA[data].upgrades[id]!== undefined" v-on:click="DATA[data].buyUpg(data, id)" v-bind:class="{ [DATA[data].upgrades.className]: true, bought: DATA[data].upgrades.isBought(id), cant: ((!DATA[data].upgrades.canAfford(id))&&(!DATA[data].upgrades.isBought(id))), can: (DATA[data].upgrades.canAfford(id)&&(!DATA[data].upgrades.isBought(id)))}">
-				<span v-html="DATA[data].upgrades[id].title" style="font-weight: bold;"></span><br>
-				<span v-html="DATA[data].upgrades[id].desc()+'<br>'"></span>
-				<span v-if="DATA[data].upgrades[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].upgrades[id].requires)" label="resources"></num-text></span><br>
-				Cost: <num-text :val="formatDefault(DATA[data].upgrades[id].cost())" label="$"></num-text-plain>
-				<span v-if="DATA[data].upgrades[id].displayEffect"><br>Currently: <span v-html="DATA[data].upgrades[id].effectString()"></span></span>
+		<div style="position: relative;">
+			<div v-if="DATA[data].upgrades[id]!== undefined" v-on:click="DATA[data].upgrades.buyUpg(id)" v-bind:class="{ 'upgrade-div': true, [DATA[data].upgrades.className]: true, bought: DATA[data].upgrades.isBought(parseInt(id)), cant: ((!DATA[data].upgrades.canAfford(id))&&(!DATA[data].upgrades.isBought(parseInt(id)))), can: (DATA[data].upgrades.canAfford(id)&&(!DATA[data].upgrades.isBought(parseInt(id))))}">
+				<div class="upg-button">
+					<span v-html="DATA[data].upgrades[id].title" style="font-weight: bold;"></span><br>
+					<span v-html="DATA[data].upgrades[id].desc()+'<br>'"></span>
+					<span v-if="DATA[data].upgrades[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].upgrades[id].requires)" label="machinery"></num-text><br></span>
+					<div class="upg-cost-container">Cost: <num-text data="m" :val="formatWhole(DATA[data].upgrades[id].cost())" label="$"></num-text-plain></div>
+					<div v-if="DATA[data].upgrades[id].displayEffect" class="upg-effect-container"><br>Currently: <span v-html="DATA[data].upgrades[id].effectString()"></span>
+				</div>
 			</div>
 		</div>
 		`
@@ -143,13 +145,14 @@ function loadVue() {
 		props: ['data'],
 		template: `
 		<div class="prestigeContainer">
-			<button v-on:click="DATA[data].prestige.doReset()" v-bind:class="{ [DATA[data].prestige.className]: true, cant: !DATA[data].prestige.canReset(), can: DATA[data].prestige.canReset(), tooltip: (player.tooltipsEnabled&&DATA[data].prestige.displayTooltip)}" v-bind:data-title="DATA[data].prestige.displayFormula()">
-				<div v-html="DATA[data].prestige.heading" style="font-weight: 900; font-size: 17pt; margin: 5px 0px;"></div>
-				<div v-if="DATA[data].prestige.displayDesc()" style="margin: 5px 0px;" v-html="DATA[data].prestige.desc()"></div>
-				<div v-if="DATA[data].prestige.canReset()" style="font-size: 15pt; margin: 0px;">Reset for <num-text-plain :val="formatPrestige(DATA[data].prestige.getGain())" :label="DATA[data].prestige.gainResource"></num-text-plain></div>
-				<div v-if="!DATA[data].prestige.canReset()" style="font-size: 15pt; margin: 0px;">Requires {{ DATA[data].prestige.getReqAmount() }} {{ DATA[data].prestige.getReqResource() }}</div>
-				<div v-if="DATA[data].prestige.canReset()&&DATA[data].prestige.showNextAt" style="font-size: 15pt; margin: 0px;">Next at {{ formatWhole(DATA[data].prestige.getNextAt()) }} {{ DATA[data].prestige.getReqResource() }}</div>
-			</button>
+			<div v-if="isBankrupt()" class="prestige-div">
+				<div class="prestige-button">
+					<div style="font-weight: bold; font-size: 20pt; margin: 5px 0px;">BANKRUPT</div>
+					<div style="margin: 5px 0px;">Reset all your progress to gain bankrupt points. You will start again with more money.</div>
+					<div>You will gain <num-text data="b" :val="formatWhole(calculateBRGain())" label="bankrupt points">.</num-text></div>
+					<div>You will start with <num-text data="m" :val="formatWhole(calculateStartMoney())" label="$">.</num-text> ({{ format(calculateStartMoneyMult()) }}x)</div>
+				</div>
+			</div>
 		</div>
 		`
 	})
@@ -560,6 +563,7 @@ function loadVue() {
 			format,
 			formatWhole,
 			formatTime,
+			isBankrupt,
 			//HOTKEYS,
             DATA,
             GAME_DATA,

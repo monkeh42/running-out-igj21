@@ -8,13 +8,19 @@ body {
     text-align: center;
 }
 
-#resource-table {
+#resource-table, #prod-upg-table {
     margin: auto;
 }
 
 .resource-line {
     font-size: 16pt;
     font-weight: bold;
+    text-align: center;
+}
+
+.prod-line {
+    font-size: 14pt;
+    font-weight: both;
     text-align: center;
 }
 
@@ -28,4 +34,106 @@ body {
     font-weight: bold;
     color: goldenrod;
     font-size: 125%;
+}
+
+.brNum {
+    font-weight: bold;
+    color: black;
+    font-size: 125%;
+}
+
+.upgrade-div {
+    border: 1px solid gainsboro;
+    height: 150px;
+    width: 150px;
+    text-align: center;
+    outline: none !important;
+    margin: 1em;
+}
+
+.upg-button {
+    pointer-events: none;
+    user-select: none;
+    padding: 12px;
+}
+
+.upgrade-div.can {
+    box-shadow: 5px 5px 5px black;
+    cursor: pointer;
+}
+
+.upgrade-div.can:hover, .upgrade-div.can:active {
+    background-color: rgba(220, 220, 220, 0.1);
+}
+
+.upgrade-div.can:active {
+    box-shadow: none;
+    margin-top: calc(1em + 5px);
+    margin-left: calc(1em + 5px);
+    margin-right: calc(1em - 5px);
+    margin-bottom: calc(1em - 5px);
+}
+
+.upgrade-div.cant {
+    cursor: not-allowed;
+}
+
+.upgrade-div.cant:after {
+    height: 150px;
+    width: 150px;
+    background-color: black;
+    opacity: 0.5;
+    position: absolute;
+    top: 1px;
+    left: calc(1em + 1px);
+    content: "";
+}
+
+.upgrade-div.bought {
+    border: 1px solid goldenrod;
+    background-color: black;
+}
+
+.upg-cost-container {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.upg-effect-container {
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 80%;
+}
+
+.prestigeContainer {
+    width: calc(2em + 400px);
+    margin: auto;
+}
+
+.prestige-div {
+    width: 400px;
+    height: 130px;
+    text-align: center;
+    margin: 1em;
+    padding: 10px;
+    border: 1px solid gainsboro;
+    background-color: steelblue;
+    box-shadow: 5px 5px 5px black;
+    cursor: pointer;
+}
+
+.prestige-div:hover, .prestige-div:active {
+    background-color: rgb(18, 118, 199);
+}
+
+.prestige-div:active {
+    box-shadow: none;
+    margin-top: calc(1em + 5px);
+    margin-left: calc(1em + 5px);
+    margin-right: calc(1em - 5px);
+    margin-bottom: calc(1em - 5px);
 }
