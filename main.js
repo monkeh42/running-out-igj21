@@ -115,13 +115,13 @@ function gameLoop(diff=new Decimal(0)) {
     
     //updateAchievements();
 
-    /*if ((currentUpdate-player.lastAutoSave)>10000) { 
+    if ((currentUpdate-player.lastAutoSave)>10000) { 
         player.lastAutoSave = currentUpdate;
         save();
-        if (player.headerDisplay['autosavePopup']) {
-            if (!player.win || player.continue) { showPopup('autosavePopup', 'Game Autosaved!', 2000); }
-        }
-    }*/
+        //if (player.headerDisplay['autosavePopup']) {
+        //    if (!player.win || player.continue) { showPopup('autosavePopup', 'Game Autosaved!', 2000); }
+        //}
+    }
     player.lastUpdate = currentUpdate;
 
     //popupTimers(diff);

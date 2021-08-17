@@ -8,6 +8,7 @@ const START_PLAYER = {
     spentBRPoints: new Decimal(0),
 
     lastUpdate: new Date().getTime(),
+    lastAutoSave: new Date().getTime(),
     devSpeed: 1,
 
     prodUpgs: [],

@@ -13,7 +13,7 @@ var PROD_DATA = {
         },
         1: {
             title: 'First Producer',
-            desc: () => 'Produces 1 machinery per second.',
+            desc: () => 'Produces 1 augments per second.',
             cost: () => new Decimal(5),
             displayEffect: false,
             effect: function() {
@@ -24,7 +24,7 @@ var PROD_DATA = {
         },
         2: {
             title: 'First Enhancer',
-            desc: () => 'Boosts all production based on machinery.',
+            desc: () => 'Boosts all production based on augments.',
             cost: () => new Decimal(20),
             requires: new Decimal(10),
             displayEffect: true,
@@ -37,7 +37,7 @@ var PROD_DATA = {
         },
         3: {
             title: 'Second Producer',
-            desc: () => 'Produces 5 machinery per second.',
+            desc: () => 'Produces 5 augments per second.',
             cost: () => new Decimal(75),
             requires: new Decimal(25),
             displayEffect: false,

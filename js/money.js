@@ -44,9 +44,14 @@ function goBankrupt() {
 }
 
 function calculateProfit() {
-    return new Decimal(1);
+    return player.spentBRPoints;
 }
 
 function calculateSpending() {
+    return new Decimal(0);
+}
 
+function calculateCreditsPerSec() {
+    let c = calculateProfit().minus(calculateSpending());
+    return c;
 }

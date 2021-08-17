@@ -153,6 +153,12 @@ body {
     cursor: pointer;
 }
 
+#options-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
@@ -164,9 +170,9 @@ body {
     background-color: #201234;
     text-align: center;
     font-size: 18px;
-    padding-left: 75px;
-    padding-right: 75px;
-    width: 650px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 700px;
     height: 300px;
     border: 2px solid gainsboro;
     box-shadow: 10px 10px 10px black;
