@@ -12,7 +12,17 @@ const START_PLAYER = {
     devSpeed: 1,
 
     prodUpgs: [],
+    brUpgs: [],
 
     activeTab: 'prod',
     seenIntro: false,
+}
+
+var OPTIONS_DATA = {
+    1: {
+        title: 'HARD RESET',
+        altTitle: '',
+        altToggle: function() { return false; },
+        fxn: function() { hardResetClick() },
+    },
 }

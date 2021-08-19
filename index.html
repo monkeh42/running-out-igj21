@@ -3,7 +3,7 @@
 <html>
     
 <head>
-    <title>You're Broke</title>
+    <title>You're Broke.</title>
     <script type="text/javascript" src="js/tools/break_infinity.js"></script>
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="js/money.js"></script>
@@ -21,17 +21,19 @@
 
 <body onload="init()">
     <div id="app">
+        <popups ref="popupscontainer"></popups>
+        <confirm-popup ref="confpop"></confirm-popup>
         <div v-if="!player.seenIntro" id="intro-popup">
             <h2>Welcome to You're Broke.</h2>
             In this game your goal is to spend all of your credits while producing augments.<br>
             (augments? credits? what is this, Cyberpunk 2e77? am I playing as a megacorp? these are all questions better left un-asked.)<br>
             When you run out of credits, you can go bankrupt and start over, beginning with a larger pool of credits. After your first bankruptcy several new features will unlock - click on the question mark in the corner for more info on these.<br>
             Have fun and try not to think about our inevitable collapse into a late-stage capitalist hellscape.
-            <div class="confirm-button" onclick="closeIntroPopup()">Oookay...</div>
+            <div id="confirm-button-container"><div class="confirm-button" onclick="closeIntroPopup()">Oookay...</div></div>
         </div>
         <div id="options-icons">
-            <div class="options-icon"><span class="material-icons md-36">settings</span></div>
-            <div class="options-icon"><span class="material-icons md-36">help_outline</span></div>
+            <div class="nav-icon" onclick="navIconClick('options')"><span v-bind:class="{ 'material-icons md-36 md-dark': true, 'selected': player.activeTab=='options' }">settings</span></div>
+            <div class="nav-icon"><span class="material-icons md-36 md-dark">help_outline</span></div>
         </div>
         <div id="header-title"><h1 v-html="(player.money.gt(0) ? 'You\'re Not Broke.' : 'You\'re Broke.')"></h1></div>
         <hr>
@@ -58,10 +60,10 @@
             </tr>
         </table>
         <hr>
-        <div v-if="player.totalBRPoints.gt(0)" id="nav-icons-container">
+        <div id="nav-icons-container">
             <div id="nav-icons">
-                <div class="nav-icon" id="prod-nav-icon" onclick="navIconClick('prod')"><span v-bind:class="{ 'material-icons md-48 md-dark': true, 'selected': player.activeTab=='prod' }">memory</span></div>
-                <div class="nav-icon" id="br-nav-icon" onclick="navIconClick('br')"><span v-bind:class="{ 'material-icons md-48 md-dark': true, 'selected': player.activeTab=='br' }">euro</span></div>
+                <div class="nav-icon" id="prod-nav-icon" onclick="navIconClick('prod')"><span v-bind:class="{ 'material-icons md-36 md-dark': true, 'selected': player.activeTab=='prod' }">memory</span></div>
+                <div v-if="player.totalBRPoints.gt(0)" class="nav-icon" id="br-nav-icon" onclick="navIconClick('br')"><span v-bind:class="{ 'material-icons md-36 md-dark': true, 'selected': player.activeTab=='br' }">euro</span></div>
             </div>
         </div>
         <div v-if="player.activeTab=='prod'" class="tab-div" id="prod-tab">
@@ -102,7 +104,26 @@
                 </tr>
             </table>
             <table id="br-upg-table">
-
+                <tr>
+                    <td>
+                        <upgrade data="b" id="1"></upgrade>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div v-if="player.activeTab=='options'" class="tab-div" id="options-tab">
+            <table id="options-table">
+                <tr>
+                    <td>
+                        <opt-button data="1"></opt-button>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>

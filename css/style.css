@@ -8,7 +8,7 @@ body {
     text-align: center;
 }
 
-#resource-table, #prod-upg-table, #br-resource-table, #br-upg-table {
+#resource-table, #prod-upg-table, #br-resource-table, #br-upg-table, #options-table {
     margin: auto;
 }
 
@@ -155,8 +155,8 @@ body {
 
 #options-icons {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 5px;
+    left: 5px;
 }
 
 .material-icons.md-18 { font-size: 18px; }
@@ -183,15 +183,127 @@ body {
     transform: translateX(-50%) translateY(-50%);
 }
 
+#confirm-button-container {
+    width: 150px;
+    margin: auto;
+}
+
 .confirm-button {
     font-size: 22px;
     border: 1px solid gainsboro;
     height: 40px;
     width: 75px;
-    margin: 15px auto;
+    margin: 1em;
     text-align: center;
     outline: none !important;
     box-shadow: 5px 5px 5px black;
     cursor: pointer;
     line-height: 40px;
+}
+
+.confirm-button:hover, .confirm-button:active {
+    background-color: rgba(220, 220, 220, 0.1);
+}
+
+.confirm-button:active {
+    box-shadow: none;
+    margin-top: calc(1em + 5px);
+    margin-left: calc(1em + 5px);
+    margin-right: calc(1em - 5px);
+    margin-bottom: calc(1em - 5px);
+}
+
+#popupContainer {
+    position: fixed;
+    top: 5px;
+    right: 0;
+    height: 200px;
+    pointer-events: none;
+    z-index: 8;
+}
+
+.autosavePopup {
+    box-shadow: 0px 0px 5px 2px gainsboro;
+    text-align: center;
+    background-color: #201234;
+    border: 3px solid gainsboro;
+    width: 150px;
+    margin: 10px;
+    border-radius: 4px;
+    opacity: 0.5;
+    z-index: 8;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}
+
+.optBut {
+    font-size: 22px;
+    border: 1px solid gainsboro;
+    height: 40px;
+    width: 150px;
+    margin: 1em;
+    text-align: center;
+    outline: none !important;
+    box-shadow: 5px 5px 5px black;
+    cursor: pointer;
+    line-height: 40px;
+}
+
+.optBut:hover, .optBut:active {
+    background-color: rgba(220, 220, 220, 0.1);
+}
+
+.optBut:active {
+    box-shadow: none;
+    margin-top: calc(1em + 5px);
+    margin-left: calc(1em + 5px);
+    margin-right: calc(1em - 5px);
+    margin-bottom: calc(1em - 5px);
+}
+
+.confPopup {
+    background-color: #201234;
+    text-align: center;
+    font-size: 18px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 300px;
+    height: 200px;
+    border: 2px solid gainsboro;
+    box-shadow: 10px 10px 10px black;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.confirmBut {
+    font-size: 22px;
+    border: 1px solid gainsboro;
+    height: 40px;
+    width: 75px;
+    margin: 1em;
+    text-align: center;
+    outline: none !important;
+    box-shadow: 5px 5px 5px black;
+    cursor: pointer;
+    line-height: 40px;
+}
+
+.confirmBut:hover, .confirmBut:active {
+    background-color: rgba(220, 220, 220, 0.1);
+}
+
+.confirmBut:active {
+    box-shadow: none;
+    margin-top: calc(1em + 5px);
+    margin-left: calc(1em + 5px);
+    margin-right: calc(1em - 5px);
+    margin-bottom: calc(1em - 5px);
 }

@@ -40,13 +40,13 @@ function init() {
 function loadGame() {
     setupData();
     player = {};
-    /*var savePlayer = localStorage.getItem('nekrosave');
-    if (savePlayer === null || savePlayer === undefined) { */
-    copyData(player, START_PLAYER);
-    /*} else {
+    var savePlayer = localStorage.getItem('brokesave');
+    if (savePlayer === null || savePlayer === undefined) { 
+        copyData(player, START_PLAYER);
+    } else {
         copyData(player, JSON.parse(window.atob(savePlayer)));
         if (Object.keys(player).length == 0) { copyData(player, START_PLAYER); }
-    }*/
+    }
     fixData(player, START_PLAYER);
     //if (player.version != GAME_DATA.version) { updateVersion(); }
 
@@ -66,9 +66,9 @@ function setupData() {
     /*addData('hk', 'hotkeys', HOTKEYS);
     addData('sk', 'stat keys', STAT_KEYS);
     addData('header', 'header displays', HEADER_DATA);
-    addData('tabs', 'tabs and subtabs', TABS_DATA);
+    addData('tabs', 'tabs and subtabs', TABS_DATA);*/
     addData('o', 'options', OPTIONS_DATA);
-    addData('sp', 'start player', START_PLAYER);
+    /*addData('sp', 'start player', START_PLAYER);
     addData('ul', 'unlocks', UNLOCKS_DATA);
     addData('ach', 'achievements', ACH_DATA);
     addData('ms', 'milestones', MILES_DATA);
@@ -93,7 +93,7 @@ function startGame() {
     var diff = new Date() - player.lastUpdate;
 
     player.lastUpdate = new Date();
-    //player.lastAutoSave = new Date();
+    player.lastAutoSave = new Date();
     //player.lastWindowUpdate = new Date();
     //save();
 
@@ -110,6 +110,7 @@ function gameLoop(diff=new Decimal(0)) {
     if (player.devSpeed>1) { diff = diff.times(player.devSpeed); }
 
     player.augs = player.augs.plus(calculateProduction().times(diff.div(1000)));
+    player.money = player.money.plus(calculateCreditsPerSec().times(diff.div(1000)))
 
     //updateUnlocks();
     
@@ -118,13 +119,11 @@ function gameLoop(diff=new Decimal(0)) {
     if ((currentUpdate-player.lastAutoSave)>10000) { 
         player.lastAutoSave = currentUpdate;
         save();
-        //if (player.headerDisplay['autosavePopup']) {
-        //    if (!player.win || player.continue) { showPopup('autosavePopup', 'Game Autosaved!', 2000); }
-        //}
+        showPopup('autosavePopup', 'Game Autosaved!', 2000); 
     }
     player.lastUpdate = currentUpdate;
 
-    //popupTimers(diff);
+    popupTimers(diff);
     
 }
 
@@ -204,4 +203,31 @@ function navIconClick(tab) {
 
 function closeIntroPopup() {
     player.seenIntro = true;
+}
+
+//save stuff
+
+function save() {
+    localStorage.setItem('brokesave', window.btoa(JSON.stringify(player)));
+}
+
+function hardResetClick() {
+    confirmation('Are you sure? This will reset ALL of your progress.', 'hardReset');
+}
+
+function hardReset() {
+    player = null;
+    save();
+    window.location.reload(true);
+}
+
+function showPopup(type, text, ms) {
+    app.$refs['popupscontainer'].timedPopups.push({'className': type, 'popupText': text, 'time': ms});
+}
+
+function confirmation(text, f, a=null) {
+    app.$refs['confpop'].confirmText = text;
+    app.$refs['confpop'].fname = f;
+    app.$refs['confpop'].arg = a;
+    app.$refs['confpop'].isActivePop = true;
 }

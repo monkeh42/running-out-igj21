@@ -133,7 +133,8 @@ function loadVue() {
 					<span v-html="DATA[data].upgrades[id].title" style="font-weight: bold;"></span><br>
 					<span v-html="DATA[data].upgrades[id].desc()+'<br>'"></span>
 					<span v-if="DATA[data].upgrades[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].upgrades[id].requires)" label="augments"></num-text><br></span>
-					<div class="upg-cost-container">Cost: <num-text data="m" :val="formatWhole(DATA[data].upgrades[id].cost())" label="$"></num-text-plain></div>
+					<div v-if="data=='p'" class="upg-cost-container">Cost: <num-text data="m" :val="formatWhole(DATA[data].upgrades[id].cost())" label="$"></num-text-plain></div>
+					<div v-else-if="data=='b'" class="upg-cost-container">Cost: <num-text data="b" :val="formatWhole(DATA[data].upgrades[id].cost())" label="BR points"></num-text-plain></div>
 					<div v-if="DATA[data].upgrades[id].displayEffect" class="upg-effect-container"><br>Currently: <span v-html="DATA[data].upgrades[id].effectString()"></span>
 				</div>
 			</div>
@@ -161,7 +162,7 @@ function loadVue() {
 		props: ['data'],
 		template: `
 		<div>
-			<button v-bind:class="{ optBut: true }" v-on:click="DATA.o[data].fxn()" v-html="(DATA.o[data].altToggle() ? DATA.o[data].altTitle : DATA.o[data].title)"></button>
+			<div v-bind:class="{ optBut: true }" v-on:click="DATA.o[data].fxn()" v-html="DATA.o[data].title"></div>
 		</div>
 		`
 	}) 
@@ -480,8 +481,8 @@ function loadVue() {
 			<h3>Are You Sure?</h3>
 			<div style="margin: auto;" v-html="confirmText"></div>
 			<div style="display: flex; justify-content: center; margin: 10px auto;">
-				<div style="flex: 1; max-width: 100px; margin: 5px;"><button class="confirmBut" v-on:click="confirmYes()">YES</button></div>
-				<div style="flex: 1; max-width: 100px; margin: 5px;"><button class="confirmBut" v-on:click="confirmNo()">NO</button></div>
+				<div class="confirmBut" v-on:click="confirmYes()">YES</div>
+				<div class="confirmBut" v-on:click="confirmNo()">NO</div>
 			</div>
 		</div>
 		`
