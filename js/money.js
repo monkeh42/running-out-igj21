@@ -100,7 +100,7 @@ function calculateProfit() {
 }
 
 function calculateSpending() {
-    return new Decimal(0);
+    return DATA.p.buyables[1].effect();
 }
 
 function calculateCreditsPerSec() {

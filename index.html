@@ -82,6 +82,11 @@
                         <upgrade data="p" id="4"></upgrade>
                     </td>
                 </tr>
+                <tr v-if="player.totalBRPoints.gt(0)">
+                    <td>
+                        <buyable data="p" id="1"></buyable>
+                    </td>
+                </tr>
             </table>
             <prestige-button></prestige-button>
         </div>

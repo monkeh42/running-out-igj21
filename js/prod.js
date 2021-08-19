@@ -54,7 +54,26 @@ var PROD_DATA = {
             requires: new Decimal(100),
             displayEffect: false,
         },
-    }
+    },
+    buyables: {
+        className: 'prod-upg',
+        canAfford: (id) => player.augs.gte(DATA.p.buyables[id].requires()),
+        buyUpg: function(id) {
+            if (!DATA.p.upgrades.canAfford(id)) { return; }
+            player.prodBuyables[parseInt(id)-1] += 1;
+        },
+        1: {
+            title: 'Hire Employee',
+            desc: () => 'Spends \u20AC2/sec/employee on salary.',
+            requires: () => Decimal.pow(10, player.prodBuyables[0]+1),
+            displayEffect: true,
+            effect: function() {
+                let e = new Decimal(player.prodBuyables[0]);
+                return e.times(2);
+            },
+            effectString: () => (formatWhole(DATA.p.buyables[1].effect()) + '/sec')
+        },
+    },
 };
 
 function calculateProduction() {

@@ -142,6 +142,25 @@ function loadVue() {
 		`
 	})
 
+	Vue.component('buyable', {
+		props: {
+			data: String, 
+			id: String,
+		},
+		template: `
+		<div style="position: relative;">
+			<div v-if="DATA[data].buyables[id]!== undefined" v-on:click="DATA[data].buyables.buyUpg(id)" v-bind:class="{ 'upgrade-div': true, [DATA[data].buyables.className]: true, cant: !DATA[data].buyables.canAfford(id), can: DATA[data].buyables.canAfford(id) }">
+				<div class="upg-button">
+					<span v-html="DATA[data].buyables[id].title" style="font-weight: bold;"></span><br>
+					<span v-html="DATA[data].buyables[id].desc()+'<br>'"></span>
+					<span v-if="DATA[data].buyables[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].buyables[id].requires())" label="augments"></num-text><br></span>
+					<div v-if="DATA[data].buyables[id].displayEffect" class="upg-effect-container"><br>Currently: <span v-html="DATA[data].buyables[id].effectString()"></span>
+				</div>
+			</div>
+		</div>
+		`
+	})
+
 	Vue.component('prestige-button', {
 		props: ['data'],
 		template: `
