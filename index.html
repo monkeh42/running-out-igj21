@@ -70,23 +70,23 @@
             <table id="prod-upg-table">
                 <tr>
                     <td>
-                        <upgrade data="p" id="1"></upgrade>
+                        <upgrade data="p" :id="parseInt(1)"></upgrade>
                     </td>
                     <td>
-                        <upgrade data="p" id="2"></upgrade>
+                        <upgrade data="p" :id="parseInt(2)"></upgrade>
                     </td>
                     <td>
-                        <upgrade data="p" id="3"></upgrade>
+                        <upgrade data="p" :id="parseInt(3)"></upgrade>
                     </td>
                     <td>
-                        <upgrade data="p" id="4"></upgrade>
+                        <upgrade data="p" :id="parseInt(4)"></upgrade>
                     </td>
                 </tr>
             </table>
             <table v-if="player.brUpgs.includes(1)" id="employee-table">
                 <tr>
                     <td>
-                        <buyable data="p" id="1"></buyable>
+                        <buyable data="p" :id="parseInt(1)"></buyable>
                     </td>
                 </tr>
             </table>
@@ -113,7 +113,7 @@
             <table id="br-upg-table">
                 <tr>
                     <td>
-                        <upgrade data="b" id="1"></upgrade>
+                        <upgrade data="b" :id="parseInt(1)"></upgrade>
                     </td>
                 </tr>
             </table>
@@ -122,14 +122,14 @@
             <table id="options-table">
                 <tr>
                     <td>
-                        <opt-button data="1"></opt-button>
+                        <opt-button :data="parseInt(1)"></opt-button>
                     </td>
                 </tr>
             </table>
             <div class="about-info">
                 Made by monkeh42 for the third Incremental Game Jam.<br>
                 Check out my discord:<br>
-
+                <a href="https://discord.gg/Db788MgmDX" target="_blank"><img src="discord.png" width="50"></a>
             </div>
         </div>
     </div>

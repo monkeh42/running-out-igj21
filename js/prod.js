@@ -74,16 +74,18 @@ var PROD_DATA = {
             },
             effectString: () => (formatWhole(DATA.p.buyables[1].effect()) + '/sec')
         },
-        2: {
-            title: 'Hire Employee',
-            desc: () => 'Spends \u20AC2/sec/employee on salary.',
-            requires: () => Decimal.pow(10, player.prodBuyables[0]+1),
+        5: {
+            title: 'Fabricator',
+            desc: () => 'Boosts augment productors based on employees hired.',
+            cost: () => new Decimal(20),
+            requires: new Decimal(10),
             displayEffect: true,
+            effectString: () => (format(DATA.p.upgrades[2].effect(), 2) + 'x'),
             effect: function() {
-                let e = new Decimal(player.prodBuyables[0]);
-                return e.times(2);
-            },
-            effectString: () => (formatWhole(DATA.p.buyables[1].effect()) + '/sec')
+                let e = new Decimal(1);
+                if (player.augs.gte(1)) { e = e.plus(player.augs.log10()); }
+                return e;
+            }
         },
         3: {
             title: 'Hire Employee',

@@ -324,3 +324,7 @@ body {
     margin-right: calc(1em - 5px);
     margin-bottom: calc(1em - 5px);
 }
+
+.about-info {
+    text-align: center;
+}
