@@ -74,6 +74,39 @@ var PROD_DATA = {
             },
             effectString: () => (formatWhole(DATA.p.buyables[1].effect()) + '/sec')
         },
+        2: {
+            title: 'Hire Employee',
+            desc: () => 'Spends \u20AC2/sec/employee on salary.',
+            requires: () => Decimal.pow(10, player.prodBuyables[0]+1),
+            displayEffect: true,
+            effect: function() {
+                let e = new Decimal(player.prodBuyables[0]);
+                return e.times(2);
+            },
+            effectString: () => (formatWhole(DATA.p.buyables[1].effect()) + '/sec')
+        },
+        3: {
+            title: 'Hire Employee',
+            desc: () => 'Spends \u20AC2/sec/employee on salary.',
+            requires: () => Decimal.pow(10, player.prodBuyables[0]+1),
+            displayEffect: true,
+            effect: function() {
+                let e = new Decimal(player.prodBuyables[0]);
+                return e.times(2);
+            },
+            effectString: () => (formatWhole(DATA.p.buyables[1].effect()) + '/sec')
+        },
+        4: {
+            title: 'Hire Employee',
+            desc: () => 'Spends \u20AC2/sec/employee on salary.',
+            requires: () => Decimal.pow(10, player.prodBuyables[0]+1),
+            displayEffect: true,
+            effect: function() {
+                let e = new Decimal(player.prodBuyables[0]);
+                return e.times(2);
+            },
+            effectString: () => (formatWhole(DATA.p.buyables[1].effect()) + '/sec')
+        },
     },
 };
 
