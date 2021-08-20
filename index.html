@@ -82,11 +82,14 @@
                         <upgrade data="p" id="4"></upgrade>
                     </td>
                 </tr>
-                <tr v-if="player.brUpgs.includes(1)">
+            </table>
+            <table v-if="player.brUpgs.includes(1)" id="employee-table">
+                <tr>
                     <td>
                         <buyable data="p" id="1"></buyable>
                     </td>
                 </tr>
+            </table>
             </table>
             <prestige-button></prestige-button>
         </div>

@@ -9,7 +9,7 @@ body {
     text-align: center;
 }
 
-#resource-table, #prod-upg-table, #br-resource-table, #br-upg-table, #options-table {
+#resource-table, #prod-upg-table, #br-resource-table, #br-upg-table, #options-table, #employee-table {
     margin: auto;
 }
 
