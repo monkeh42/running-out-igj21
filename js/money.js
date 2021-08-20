@@ -95,6 +95,12 @@ function goBankrupt() {
     player.prodUpgs = new Array();
 }
 
+function getBRPointEffect() {
+    let e = new Decimal(1);
+    e = e.plus(player.totalBRPoints.log10()*2);
+    return Decimal.max(e, 1);
+}
+
 function calculateProfit() {
     return player.spentBRPoints;
 }

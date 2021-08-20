@@ -135,7 +135,7 @@ function loadVue() {
 					<span v-if="DATA[data].upgrades[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].upgrades[id].requires)" label="augments"></num-text><br></span>
 					<div v-if="data=='p'" class="upg-cost-container">Cost: <num-text data="m" :val="formatWhole(DATA[data].upgrades[id].cost())" label="$"></num-text-plain></div>
 					<div v-else-if="data=='b'" class="upg-cost-container">Cost: <num-text data="b" :val="formatWhole(DATA[data].upgrades[id].cost())" label="BR points"></num-text-plain></div>
-					<div v-if="DATA[data].upgrades[id].displayEffect" class="upg-effect-container"><br>Currently: <span v-html="DATA[data].upgrades[id].effectString()"></span>
+					<div v-if="DATA[data].upgrades[id].displayEffect" class="upg-effect-container"><br>Currently: <span v-html="DATA[data].upgrades[id].effectString()"></span></div>
 				</div>
 			</div>
 		</div>
@@ -149,12 +149,13 @@ function loadVue() {
 		},
 		template: `
 		<div style="position: relative;">
-			<div v-if="DATA[data].buyables[id]!== undefined" v-on:click="DATA[data].buyables.buyUpg(id)" v-bind:class="{ 'upgrade-div': true, [DATA[data].buyables.className]: true, cant: !DATA[data].buyables.canAfford(id), can: DATA[data].buyables.canAfford(id) }">
-				<div class="upg-button">
+			<div v-if="DATA[data].buyables[id]!== undefined" v-on:click="DATA[data].buyables.buyUpg(id)" v-bind:class="{ 'buyable-div': true, [DATA[data].buyables.className]: true, cant: !DATA[data].buyables.canAfford(id), can: DATA[data].buyables.canAfford(id) }">
+				<div class="buyable-button">
 					<span v-html="DATA[data].buyables[id].title" style="font-weight: bold;"></span><br>
 					<span v-html="DATA[data].buyables[id].desc()+'<br>'"></span>
 					<span v-if="DATA[data].buyables[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].buyables[id].requires())" label="augments"></num-text><br></span>
-					<div v-if="DATA[data].buyables[id].displayEffect" class="upg-effect-container"><br>Currently: <span v-html="DATA[data].buyables[id].effectString()"></span>
+					Current level: <span v-html="DATA[data].buyables.currentLevel(id)"></span>
+					<div v-if="DATA[data].buyables[id].displayEffect" class="upg-effect-container"><br>Currently: <span v-html="DATA[data].buyables[id].effectString()"></span></div>
 				</div>
 			</div>
 		</div>

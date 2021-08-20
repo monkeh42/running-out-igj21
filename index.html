@@ -27,13 +27,13 @@
             <h2>Welcome to You're Broke.</h2>
             In this game your goal is to spend all of your credits while producing augments.<br>
             (augments? credits? what is this, Cyberpunk 2e77? am I playing as a megacorp? these are all questions better left un-asked.)<br>
-            When you run out of credits, you can go bankrupt and start over, beginning with a larger pool of credits. After your first bankruptcy several new features will unlock - click on the question mark in the corner for more info on these.<br>
+            When you run out of credits, you can go bankrupt and start over, beginning with a larger pool of credits. After your first bankruptcy several new features will unlock - click on the question mark in the corner for more info on these (NOT IMPLEMENTED).<br>
             Have fun and try not to think about our inevitable collapse into a late-stage capitalist hellscape.
             <div id="confirm-button-container"><div class="confirm-button" onclick="closeIntroPopup()">Oookay...</div></div>
         </div>
         <div id="options-icons">
-            <div class="nav-icon" onclick="navIconClick('options')"><span v-bind:class="{ 'material-icons md-36 md-dark': true, 'selected': player.activeTab=='options' }">settings</span></div>
             <div class="nav-icon"><span class="material-icons md-36 md-dark">help_outline</span></div>
+            <div class="nav-icon" onclick="navIconClick('options')"><span v-bind:class="{ 'material-icons md-36 md-dark': true, 'selected': player.activeTab=='options' }">settings</span></div>
         </div>
         <div id="header-title"><h1 v-html="(player.money.gt(0) ? 'You\'re Not Broke.' : 'You\'re Broke.')"></h1></div>
         <hr>
@@ -99,7 +99,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <div class="resource-line">You have gained <num-text data="b" :val="formatWhole(player.totalBRPoints)" label="total bankrupt points"></num-text>.</div>
+                        <div class="resource-line">You have gained <num-text data="b" :val="formatWhole(player.totalBRPoints)" label="total bankrupt points"></num-text>, which boost augment production by <num-text data="d" :val="format(getBRPointEffect(), 2)" label=""></num-text>x.</div>
                     </td>
                 </tr>
                 <tr>

@@ -56,7 +56,8 @@ var PROD_DATA = {
         },
     },
     buyables: {
-        className: 'prod-upg',
+        className: 'prod-buyable',
+        currentLevel: (id) => player.prodBuyables[id-1],
         canAfford: (id) => player.augs.gte(DATA.p.buyables[id].requires()),
         buyUpg: function(id) {
             if (!DATA.p.upgrades.canAfford(id)) { return; }
@@ -81,7 +82,7 @@ function calculateProduction() {
     if (hasProdUpg(1)) { prod = prod.plus(getProdUpgEffect(1)); }
     if (hasProdUpg(3)) { prod = prod.plus(getProdUpgEffect(3)); }
     if (hasProdUpg(2)) { prod = prod.times(getProdUpgEffect(2)); }
-    return prod;
+    return prod.times(getBRPointEffect());
 }
 
 function hasProdUpg(id) {

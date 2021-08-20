@@ -27,3 +27,9 @@ var OPTIONS_DATA = {
         fxn: function() { hardResetClick() },
     },
 }
+
+var DEFAULT_DATA = {
+    layerDisplay: {
+        numClass: 'defNum',
+    }
+};

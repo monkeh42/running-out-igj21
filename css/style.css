@@ -2,6 +2,7 @@ body {
     background-color: #201234;
     color: gainsboro;
     font-family: 'Teko', sans-serif;
+    line-height: 1.2em;
 }
 
 #header-title {
@@ -24,6 +25,12 @@ body {
     text-align: center;
 }
 
+.defNum {
+    font-weight: bold;
+    color: gainsboro;
+    font-size: 125%;
+}
+
 .prodNum {
     font-weight: bold;
     color: #de00ee;
@@ -43,7 +50,13 @@ body {
     font-size: 125%;
 }
 
-.upgrade-div {
+.upg-button, .buyable-button {
+    pointer-events: none;
+    user-select: none;
+    padding: 12px;
+}
+
+.upgrade-div, .buyable-div {
     border: 1px solid gainsboro;
     height: 150px;
     width: 150px;
@@ -52,22 +65,20 @@ body {
     margin: 1em;
 }
 
-.upg-button {
-    pointer-events: none;
-    user-select: none;
-    padding: 12px;
+.buyable-div {
+    border-radius: 25px;
 }
 
-.upgrade-div.can {
+.upgrade-div.can, .buyable-div.can {
     box-shadow: 5px 5px 5px black;
     cursor: pointer;
 }
 
-.upgrade-div.can:hover, .upgrade-div.can:active {
+.upgrade-div.can:hover, .upgrade-div.can:active, .buyable-div.can:hover, .buyable-div.can:active {
     background-color: rgba(220, 220, 220, 0.1);
 }
 
-.upgrade-div.can:active {
+.upgrade-div.can:active, .buyable-div.can:active {
     box-shadow: none;
     margin-top: calc(1em + 5px);
     margin-left: calc(1em + 5px);
@@ -75,11 +86,11 @@ body {
     margin-bottom: calc(1em - 5px);
 }
 
-.upgrade-div.cant {
+.upgrade-div.cant, .buyable-div.cant {
     cursor: not-allowed;
 }
 
-.upgrade-div.cant:after {
+.upgrade-div.cant:after, .buyable-div.cant:after {
     height: 150px;
     width: 150px;
     background-color: black;
@@ -88,6 +99,10 @@ body {
     top: 1px;
     left: calc(1em + 1px);
     content: "";
+}
+
+.buyable-div.cant:after {
+    border-radius: 25px;
 }
 
 .upgrade-div.bought {
@@ -157,13 +172,15 @@ body {
     position: absolute;
     top: 5px;
     left: 5px;
+    display: flex;
+    justify-content: center;
 }
 
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
-.material-icons.md-dark { color: rgba(0, 0, 0, 1); }
+.material-icons.md-dark { color: rgb(87, 87, 87); }
 .material-icons.md-dark.selected { color: rgba(255, 255, 255, 1); }
 
 #intro-popup {

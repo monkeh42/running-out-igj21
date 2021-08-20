@@ -63,6 +63,7 @@ function setupData() {
     addData('p', 'production', PROD_DATA);
     addData('m', 'money', MONEY_DATA);
     addData('b', 'bankrupt', BANKRUPT_DATA);
+    addData('d', 'default', DEFAULT_DATA);
     /*addData('hk', 'hotkeys', HOTKEYS);
     addData('sk', 'stat keys', STAT_KEYS);
     addData('header', 'header displays', HEADER_DATA);
@@ -110,7 +111,8 @@ function gameLoop(diff=new Decimal(0)) {
     if (player.devSpeed>1) { diff = diff.times(player.devSpeed); }
 
     player.augs = player.augs.plus(calculateProduction().times(diff.div(1000)));
-    player.money = player.money.plus(calculateCreditsPerSec().times(diff.div(1000)))
+    if (player.money.gt(0)) { player.money = player.money.plus(calculateCreditsPerSec().times(diff.div(1000))); }
+    else if (player.money.lt(0)) { player.money = new Decimal(0); }
 
     //updateUnlocks();
     
