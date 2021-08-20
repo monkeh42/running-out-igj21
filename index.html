@@ -124,14 +124,20 @@
                     <td>
                         <opt-button :data="parseInt(1)"></opt-button>
                     </td>
+                    <td>
+                        <opt-button :data="parseInt(2)"></opt-button>
+                    </td>
+                    <td>
+                        <opt-button :data="parseInt(3)"></opt-button>
+                    </td>
                 </tr>
             </table>
             <div style="margin: auto; text-align: center;">
                 <div style="min-height: 25px"><div v-if="importing"><label id="exportTextLabel" for="exportText">Paste your save here...</label></div></div>
-                <div v-if="importing||exporting"><textarea class="scrollbar" style="resize: none; overflow: overlay;" ref="exptextarea" v-model="exportTextArea" id="exportText" name="exportText"></textarea></div>
+                <div v-if="importing||exporting"><textarea class="scrollbar" ref="exptextarea" v-model="exportTextArea" id="exportText" name="exportText"></textarea></div>
                 <div style="width: auto; margin: auto; display: flex; justify-content: center;">
-                    <div v-if="importing" style="flex: 1; width: 150px; max-width: 150px; margin: 5px;"><button class="optBut" v-on:click="importSave()">IMPORT</button></div>
-                    <div v-if="importing||exporting" style="flex: 1; width: 150px; max-width: 150px; margin: 5px;"><button class="optBut" v-on:click="closeText()">CLOSE</button></div>
+                    <div v-if="importing"><div class="optBut" v-on:click="importSave()">IMPORT</div></div>
+                    <div v-if="importing||exporting"><div class="optBut" v-on:click="closeText()">CLOSE</div></div>
                 </div>
             </div>
             <div class="about-info">

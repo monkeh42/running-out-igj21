@@ -26,6 +26,18 @@ var OPTIONS_DATA = {
         altToggle: function() { return false; },
         fxn: function() { hardResetClick() },
     },
+    2: {
+        title: 'IMPORT SAVE',
+        altTitle: '',
+        altToggle: function() { return false; },
+        fxn: function() { importToggle() },
+    },
+    3: {
+        title: 'EXPORT SAVE',
+        altTitle: '',
+        altToggle: function() { return false; },
+        fxn: function() { exportSave() },
+    },
 }
 
 var DEFAULT_DATA = {

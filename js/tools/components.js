@@ -647,12 +647,12 @@ function loadVue() {
 			sliderVal: player.antiPercent,
 			trueSliderVal: player.trueEmitters,
 			antiSliderVal: player.antiEmitters,
-			shadowStyle: '',
+			shadowStyle: '',*/
 			devSpeed: 1,
 			showHelp: false,
 			importing: false,
 			exporting: false,
-			exportTextArea: '',*/
+			exportTextArea: '',
 		},
 	})
 

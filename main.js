@@ -69,8 +69,8 @@ function setupData() {
     addData('header', 'header displays', HEADER_DATA);
     addData('tabs', 'tabs and subtabs', TABS_DATA);*/
     addData('o', 'options', OPTIONS_DATA);
-    /*addData('sp', 'start player', START_PLAYER);
-    addData('ul', 'unlocks', UNLOCKS_DATA);
+    addData('sp', 'start player', START_PLAYER);
+    /*addData('ul', 'unlocks', UNLOCKS_DATA);
     addData('ach', 'achievements', ACH_DATA);
     addData('ms', 'milestones', MILES_DATA);
     addData('ab', 'autobuyers', AUTOBUYERS_DATA);
@@ -232,4 +232,41 @@ function confirmation(text, f, a=null) {
     app.$refs['confpop'].fname = f;
     app.$refs['confpop'].arg = a;
     app.$refs['confpop'].isActivePop = true;
+}
+
+function importToggle() {
+    app.exportTextArea = '';
+    app.importing = true;
+    app.exporting = false;
+    setTimeout(function() { app.$refs['exptextarea'].focus() }, 10);
+}
+
+function importSave() {
+    var imported = app.exportTextArea;
+    if (imported !== undefined) {
+        try {
+            copyData(player, JSON.parse(window.atob(imported)));
+            if (Object.keys(player).length == 0) { copyData(player, DATA.sp); }
+        } catch(e) {
+            return;
+        }
+    }
+    
+    fixData(player, DATA.sp); 
+    //if (player.version != GAME_DATA.version) { updateVersion(); }
+    save();
+    window.location.reload();
+}
+
+function exportSave() {
+    app.importing = false;
+    app.exporting = true;
+    app.exportTextArea = window.btoa(JSON.stringify(player));
+    setTimeout(function() { app.$refs['exptextarea'].select() }, 10);
+}
+
+function closeText() {
+    app.importing = false;
+    app.exporting = false;
+    app.exportTextArea = '';
 }
