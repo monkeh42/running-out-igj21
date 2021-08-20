@@ -60,7 +60,7 @@ var PROD_DATA = {
         currentLevel: (id) => player.prodBuyables[id-1],
         canAfford: (id) => player.augs.gte(DATA.p.buyables[id].requires()),
         buyUpg: function(id) {
-            if (!DATA.p.upgrades.canAfford(id)) { return; }
+            if (!DATA.p.buyables.canAfford(id)) { return; }
             player.prodBuyables[parseInt(id)-1] += 1;
         },
         1: {

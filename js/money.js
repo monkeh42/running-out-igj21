@@ -87,17 +87,19 @@ function goBankrupt() {
     if (!isBankrupt()) { return; }
     let start = calculateStartMoney();
     let brp = calculateBRGain();
+    player.lastAugsAtReset = player.augs;
     player.brPoints = player.brPoints.plus(brp);
     player.totalBRPoints = player.totalBRPoints.plus(brp);
     player.augs = START_PLAYER.augs;
     player.startMoney = start;
     player.money = start;
     player.prodUpgs = new Array();
+    player.buyableUpgs = [...START_PLAYER.prodBuyables]
 }
 
 function getBRPointEffect() {
     let e = new Decimal(1);
-    e = e.plus(player.totalBRPoints.log10()*2);
+    e = e.plus(player.totalBRPoints.plus(1).log10());
     return Decimal.max(e, 1);
 }
 
