@@ -134,7 +134,7 @@ function loadVue() {
 					<span v-html="DATA[data].upgrades[id].desc()+'<br>'"></span>
 					<span v-if="DATA[data].upgrades[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].upgrades[id].requires)" label="augments"></num-text><br></span>
 					<div v-if="data=='p'" class="upg-cost-container">Cost: <num-text data="m" :val="formatWhole(DATA[data].upgrades[id].cost())" label="$"></num-text-plain></div>
-					<div v-else-if="data=='b'" class="upg-cost-container">Cost: <num-text data="b" :val="formatWhole(DATA[data].upgrades[id].cost())" label="BR points"></num-text-plain></div>
+					<div v-else-if="data=='b'" class="upg-cost-container">Cost: <num-text data="b" :val="formatWhole(DATA[data].upgrades[id].cost())" label="BR points"></num-text></div>
 					<div v-if="DATA[data].upgrades[id].displayEffect" class="upg-effect-container"><br>Currently: <span v-html="DATA[data].upgrades[id].effectString()"></span></div>
 				</div>
 			</div>
@@ -153,7 +153,8 @@ function loadVue() {
 				<div class="buyable-button">
 					<span v-html="DATA[data].buyables[id].title" style="font-weight: bold;"></span><br>
 					<span v-html="DATA[data].buyables[id].desc()+'<br>'"></span>
-					<span v-if="DATA[data].buyables[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].buyables[id].requires())" label="augments"></num-text><br></span>
+					<span v-if="DATA[data].buyables[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].buyables[id].requires())" label="a"></num-text><br></span>
+					<div v-if="DATA[data].buyables[id].cost!==undefined" class="upg-cost-container">Cost: <num-text data="m" :val="formatWhole(DATA[data].buyables[id].cost())" label="$"></num-text></div>
 					Current level: <span v-html="DATA[data].buyables.currentLevel(id)"></span>
 					<div v-if="DATA[data].buyables[id].displayEffect" class="upg-effect-container"><br>Currently: <span v-html="DATA[data].buyables[id].effectString()"></span></div>
 				</div>

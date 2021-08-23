@@ -74,17 +74,17 @@ var PROD_DATA = {
             },
             effectString: () => (formatWhole(DATA.p.buyables[1].effect()) + '/sec')
         },
-        5: {
-            title: 'Fabricator',
-            desc: () => 'Boosts augment productors based on employees hired.',
-            cost: () => new Decimal(20),
-            requires: new Decimal(10),
+        2: {
+            title: 'Install Fabricator',
+            desc: () => 'Production x employees hired per fabricator.',
+            cost: () => new Decimal.pow(1000, player.prodBuyables[1]+1),
+            requires: () => Decimal.pow(1000, player.prodBuyables[1]+1),
             displayEffect: true,
-            effectString: () => (format(DATA.p.upgrades[2].effect(), 2) + 'x'),
+            effectString: () => (format(DATA.p.buyables[2].effect(), 2) + 'x'),
             effect: function() {
-                let e = new Decimal(1);
-                if (player.augs.gte(1)) { e = e.plus(player.augs.log10()); }
-                return e;
+                let e = new Decimal(player.prodBuyables[1]);
+                e = e.times(player.prodBuyables[0]);
+                return Decimal.max(e, 1);
             }
         },
         3: {
@@ -117,6 +117,7 @@ function calculateProduction() {
     if (hasProdUpg(1)) { prod = prod.plus(getProdUpgEffect(1)); }
     if (hasProdUpg(3)) { prod = prod.plus(getProdUpgEffect(3)); }
     if (hasProdUpg(2)) { prod = prod.times(getProdUpgEffect(2)); }
+    prod = prod.times(DATA.p.buyables[2].effect());
     return prod.times(getBRPointEffect());
 }
 

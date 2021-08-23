@@ -39,13 +39,13 @@
         <hr>
         <table id="resource-table">
             <tr>
-                <td width="250px">
+                <td width="300px">
                     <div class="resource-line">You have <num-text data="m" :val="formatWhole(player.money)" label="$"></num-text>.</div>
                 </td>
                 <td width="50px">
                     <div style="width: 100%;"></div>
                 </td>
-                <td width="250px">
+                <td width="300px">
                     <div class="resource-line">You have <num-text data="p" :val="format(player.augs, 1)" label="augments"></num-text>.</div>
                 </td>
             </tr>
@@ -87,6 +87,9 @@
                 <tr>
                     <td>
                         <buyable data="p" :id="parseInt(1)"></buyable>
+                    </td>
+                    <td>
+                        <buyable data="p" :id="parseInt(2)"></buyable>
                     </td>
                 </tr>
             </table>

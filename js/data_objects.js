@@ -12,7 +12,7 @@ const START_PLAYER = {
     devSpeed: 1,
 
     prodUpgs: [],
-    prodBuyables: [0],
+    prodBuyables: [0, 0],
     brUpgs: [],
 
     activeTab: 'prod',
