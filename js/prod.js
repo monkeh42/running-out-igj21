@@ -54,11 +54,21 @@ var PROD_DATA = {
             requires: new Decimal(100),
             displayEffect: false,
         },
+        5: {
+            title: 'Forced Augmentation',
+            desc: () => 'Doubles base production of all producers.',
+            cost: () => new Decimal(200),
+            requires: new Decimal(100),
+            displayEffect: false,
+        },
     },
     buyables: {
         className: 'prod-buyable',
         currentLevel: (id) => player.prodBuyables[id-1],
-        canAfford: (id) => player.augs.gte(DATA.p.buyables[id].requires()),
+        canAfford: function(id) {
+            if (DATA.p.buyables[id].cost) { return player.augs.gte(DATA.p.buyables[id].requires())&&player.money.gte(DATA.p.buyables[id].cost()); }
+            else { return player.augs.gte(DATA.p.buyables[id].requires()); }
+        },
         buyUpg: function(id) {
             if (!DATA.p.buyables.canAfford(id)) { return; }
             player.prodBuyables[parseInt(id)-1] += 1;
@@ -76,7 +86,7 @@ var PROD_DATA = {
         },
         2: {
             title: 'Install Fabricator',
-            desc: () => 'Production x employees hired per fabricator.',
+            desc: () => 'Multiply production by employees hired per fabricator.',
             cost: () => new Decimal.pow(1000, player.prodBuyables[1]+1),
             requires: () => Decimal.pow(1000, player.prodBuyables[1]+1),
             displayEffect: true,

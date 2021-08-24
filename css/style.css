@@ -9,7 +9,7 @@ body {
     text-align: center;
 }
 
-#resource-table, #prod-upg-table, #br-resource-table, #br-upg-table, #options-table, #employee-table {
+#resource-table, #prod-upg-table, #br-resource-table, #br-upg-table, #options-table, #employee-table, #prestige-table {
     margin: auto;
 }
 
@@ -59,7 +59,7 @@ body {
 .upgrade-div, .buyable-div {
     border: 1px solid gainsboro;
     height: 150px;
-    width: 150px;
+    width: 200px;
     text-align: center;
     outline: none !important;
     margin: 1em;
@@ -92,7 +92,7 @@ body {
 
 .upgrade-div.cant:after, .buyable-div.cant:after {
     height: 150px;
-    width: 150px;
+    width: 200px;
     background-color: black;
     opacity: 0.5;
     position: absolute;
@@ -125,16 +125,11 @@ body {
     font-size: 80%;
 }
 
-.prestigeContainer {
-    width: calc(2em + 400px);
-    margin: auto;
-}
-
 .prestige-div {
     width: 400px;
     height: 130px;
     text-align: center;
-    margin: 1em;
+    margin: 1em auto;
     padding: 10px;
     border: 1px solid gainsboro;
     background-color: #391f5e;

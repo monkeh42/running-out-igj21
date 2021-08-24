@@ -153,7 +153,7 @@ function loadVue() {
 				<div class="buyable-button">
 					<span v-html="DATA[data].buyables[id].title" style="font-weight: bold;"></span><br>
 					<span v-html="DATA[data].buyables[id].desc()+'<br>'"></span>
-					<span v-if="DATA[data].buyables[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].buyables[id].requires())" label="a"></num-text><br></span>
+					<span v-if="DATA[data].buyables[id].requires!==undefined">Requires: <num-text :data="data" :val="formatWhole(DATA[data].buyables[id].requires())" label="aug"></num-text><br></span>
 					<div v-if="DATA[data].buyables[id].cost!==undefined" class="upg-cost-container">Cost: <num-text data="m" :val="formatWhole(DATA[data].buyables[id].cost())" label="$"></num-text></div>
 					Current level: <span v-html="DATA[data].buyables.currentLevel(id)"></span>
 					<div v-if="DATA[data].buyables[id].displayEffect" class="upg-effect-container"><br>Currently: <span v-html="DATA[data].buyables[id].effectString()"></span></div>
